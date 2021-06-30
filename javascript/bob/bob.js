@@ -1,8 +1,17 @@
-//
-// This is only a SKELETON file for the 'Bob' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 export const hey = (message) => {
-  throw new Error('Remove this statement and implement this function');
+  const trimmedMessage = message.trim();
+  const regex = new RegExp('[a-zA-Z]');
+  if (!trimmedMessage) {
+    return 'Fine. Be that way!';
+  }
+  if (trimmedMessage.split('')[trimmedMessage.length - 1] === '?') {
+    if (message === message.toUpperCase() && regex.test(message)) {
+      return `Calm down, I know what I'm doing!`;
+    }
+    return 'Sure.';
+  }
+  if (message === message.toUpperCase() && regex.test(message.toLowerCase())) {
+    return 'Whoa, chill out!';
+  }
+  return 'Whatever.';
 };
