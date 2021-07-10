@@ -1,6 +1,38 @@
-// This is only a SKELETON file for the 'Robot Name' exercise. It's been
-// provided as a convenience to get your started writing code faster.
+export class Robot {
+  static robotNames = new Set();
+  #name = this.createName();
 
-export class Robot {}
+  static releaseNames() {
+    Robot.robotNames.clear();
+    return; 
+  }
 
-Robot.releaseNames = () => {};
+  get name() {
+    return this.#name;
+  }
+
+  createName() {
+    let newName = '';
+
+    for (let i = 0; i < 2; i++) {
+      newName += String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+    }
+    for (let i = 0; i < 3; i++) {
+      newName += Math.floor(Math.random() * 10);
+    }
+
+    if (Robot.robotNames.has(newName)) {
+      return setImmediate(() => this.createName());
+    } else {
+      Robot.robotNames.add(newName);
+      return newName;
+    }
+  }
+
+  reset() {
+    this.#name = this.createName();
+    return;
+  }
+}
+
+
